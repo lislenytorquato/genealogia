@@ -1,13 +1,10 @@
 package questao17.genealogia.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import questao17.genealogia.exception.PessoaException;
 import questao17.genealogia.model.Pessoa;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class PessoaService {
 
@@ -26,16 +23,19 @@ public class PessoaService {
     public void deletarPessoa (Pessoa pessoa){
         pessoas.remove(pessoa);
     }
-    public List<Pessoa> listarPessoas(Pessoa pessoa){
+    public List<Pessoa> listarPessoas(){
         return pessoas;
     }
-    public List<Pessoa>   exibirGenealogia(Pessoa pessoa) {
-        List<Pessoa> familia = new ArrayList<>();
-
-        familia.add(pessoa.getPai());
-        familia.add(pessoa.getMae());
-
-        return familia;
+    public String exibirGenealogia(Pessoa pessoa) throws PessoaException {
+        String pessoaString = "";
+        if (pessoa.getPai() != null && pessoa.getMae() != null){
+            pessoaString = pessoa.toString();
+        }else if (pessoa.getPai() == null){
+            throw new PessoaException("Pai não encontrado");
+        }else {
+            throw new PessoaException("Mae não encontrada");
+        }
+        return pessoaString;
     }
 
 

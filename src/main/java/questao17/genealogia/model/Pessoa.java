@@ -61,4 +61,14 @@ public class Pessoa {
     public int hashCode() {
         return Objects.hash(nome, idade, pai, mae);
     }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+                "nome='" + nome + '\'' +
+                ", idade=" + idade +
+                ", pai=" + pai +
+                ", mae=" + mae +
+                '}';
+    }
 }
